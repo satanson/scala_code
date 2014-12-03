@@ -27,7 +27,24 @@ object listcmpare {
 //    }
 //    new ListOrdered(L)
 //  }
-  implicit def list2orderedA[T](L:List[T])(implicit t2ordered:T=>Ordered[T]): Ordered[List[T]] ={
+//  implicit def list2orderedA[T](L:List[T])(implicit t2ordered:T=>Ordered[T]): Ordered[List[T]] ={
+//    class ListOrdered(lhs:List[T]) extends Ordered[List[T]]{
+//      def compare(rhs:List[T]):Int={
+//        if (lhs.isEmpty && !rhs.isEmpty) 1
+//        else if(lhs.isEmpty && rhs.isEmpty) 0
+//        else if(!lhs.isEmpty && rhs.isEmpty) -1
+//        else {
+//          if (lhs.head!=rhs.head) {
+//            lhs.head compare rhs.head
+//          }else
+//            lhs.tail compare rhs.tail
+//        }
+//      }
+//    }
+//    new ListOrdered(L)
+//  }
+
+  implicit def list2orderedB[T<%Ordered[T]](L:List[T]): Ordered[List[T]] ={
     class ListOrdered(lhs:List[T]) extends Ordered[List[T]]{
       def compare(rhs:List[T]):Int={
         if (lhs.isEmpty && !rhs.isEmpty) 1
